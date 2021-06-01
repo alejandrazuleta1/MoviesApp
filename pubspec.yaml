@@ -59,6 +59,11 @@ flutter:
 
   assets:
     - assets/img/poster.jpg
+    -
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

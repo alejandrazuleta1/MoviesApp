@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/Movies/bloc/movies_bloc.dart';
 import 'package:movie_app/Movies/model/movie_list.dart';
 import 'package:movie_app/Movies/ui/widgets/movie_item.dart';
-import 'package:movie_app/Movies/ui/widgets/segmented_control.dart';
 
 class HomeMovies extends StatefulWidget {
   final MoviesBloc _bloc;
@@ -34,19 +33,36 @@ class HomeMoviesState extends State<HomeMovies> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Top Rated Movies'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          'Top Rated Movies',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Color.fromRGBO(27, 27, 38, 1),
+            fontFamily: "Lato",
+            fontWeight: FontWeight.w900,
+          ),
+        ),
       ),
-      body: StreamBuilder(
-      stream: widget._bloc.allMovies,
-      builder: (context, AsyncSnapshot<MovieList> snapshot) {
-        if (snapshot.hasData) {
-          return gridView(snapshot);
-        } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        return Center(child: CircularProgressIndicator());
-        },
+      body: Column(
+        children: [
+          Flexible(
+            child: StreamBuilder(
+              stream: widget._bloc.allMovies,
+              builder: (context, AsyncSnapshot<MovieList> snapshot) {
+                if (snapshot.hasData) {
+                  return gridView(snapshot);
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                return Center(child: CircularProgressIndicator());
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
