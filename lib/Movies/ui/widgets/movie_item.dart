@@ -8,15 +8,11 @@ class MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
 
     final card = Container(
-      height: screenHeight * 0.7,
-      width: screenWidth * 0.45,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
           shape: BoxShape.rectangle,
           boxShadow: <BoxShadow> [
             BoxShadow(
@@ -24,18 +20,18 @@ class MovieItem extends StatelessWidget {
                 blurRadius: 15.0,
                 offset: Offset(0.0,7.0)
             )
-          ]
-      ),
-        child: Image.network(
-          pathImage,
-          fit: BoxFit.fitWidth,
+          ],
+        image: DecorationImage(
+          image: new NetworkImage(pathImage),
+          fit: BoxFit.fill,
         )
+      ),
     );
     return Stack(
       alignment: Alignment(0.9,1.1),
       children: [
         card,
-        FloatingActionButtonGreen()
+        //FloatingActionButtonGreen()
       ],
     );
   }

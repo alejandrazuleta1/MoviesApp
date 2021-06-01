@@ -54,10 +54,10 @@ class HomeMoviesState extends State<HomeMovies> {
   Widget gridView(AsyncSnapshot<MovieList> snapshot) {
     return GridView.builder(
         itemCount: snapshot.data.results.length,
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 300,
-            crossAxisSpacing: 7,
-            mainAxisSpacing: 7),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.7,
+        ),
         itemBuilder: (BuildContext context, int index) {
           return GridTile(
             child: InkResponse(
